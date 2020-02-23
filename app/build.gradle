@@ -1,0 +1,97 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.benmohammad.mvrxapplication"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    def ktxVersion = '1.0.2'
+    def appCompatVersion = '1.0.2'
+    def mvrxVersion = '1.1.0'
+    def lifecycleVersion = '2.0.0'
+    def navVersion = '2.0.0'
+    def retrofitVersion = '2.6.1'
+    def rxAndroidVersion = '2.1.1'
+    def rxJavaVersion = '2.2.11'
+    def requeryVersion = '1.6.0'
+    def kotlinVersion = '1.3.50'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    // Auto. Kotlin Extensions for View Binding instead of doing e.g. findViewById.
+    implementation "androidx.core:core-ktx:$ktxVersion"
+
+    // MvRx: Mavericks
+    implementation "com.airbnb.android:mvrx:$mvrxVersion"
+
+    // Lifecycle extensions:
+    // 1- ViewModel (Retain UI State on un-mount and re-mount)
+    // 2- LiveData (Data inside ViewModel. UI Observes it)
+    // Prevents re-rendering unmounted UI (memory leaks)
+    // Room can return LiveData objects, meaning UI can observe LiveData for updates.
+
+    // View (Fragment) is a LifecycleOwner
+    // LiveData is a LifecycleObserver. It observes Lifecycle and
+    // thus LifecycleOwner(s) indirectly.
+
+    // Also support DataBinding with XML.
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+
+    // Navigation Component
+    // Fragment transactions, stack navigation, deep linking, transition animations...
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
+
+
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    // Moshi adapter for Retrofit
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    // RxJava adapter for Retrofit
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    // RxAndroid
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+
+    // Requery & annotation processing
+    implementation "io.requery:requery:$requeryVersion"
+    implementation "io.requery:requery-kotlin:$requeryVersion"
+    implementation "io.requery:requery-android:$requeryVersion"
+    kapt "io.requery:requery-processor:$requeryVersion"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+
+
+
+}
