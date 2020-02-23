@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/firstFragment">
+
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.benmohammad.mvrxapplication.first.FirstFragment"
+        android:label="first_fragment"
+        tools:layout="@layout/first_fragment">
+        <action
+            android:id="@+id/first_to_second"
+            app:destination="@id/secondFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondFragment"
+        tools:layout="@layout/second_fragment"
+        android:name="com.benmohammad.mvrxapplication.second.SecondFragment"
+        android:label="SecondFragment" >
+        <action
+            android:id="@+id/action_secondFragment_to_thirdFragment"
+            app:destination="@id/thirdFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/thirdFragment"
+        android:name="com.benmohammad.mvrxapplication.third.ThirdFragment"
+        android:label="ThirdFragment"
+        tools:layout="@layout/third_fragment">
+        <action
+            android:id="@+id/action_thirdFragment_to_fourthFragment"
+            app:destination="@id/fourthFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/fourthFragment"
+        android:label="FourthFragment"
+        android:name="com.benmohammad.mvrxapplication.fourth.FourthFragment"
+        tools:layout="@layout/fourth_fragment">
+        <action
+            android:id="@+id/action_fourthFragment_to_firstFragment"
+            app:destination="@id/firstFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+    </fragment>
+</navigation>
